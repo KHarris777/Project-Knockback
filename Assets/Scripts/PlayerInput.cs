@@ -25,6 +25,11 @@ public class PlayerInput : MonoBehaviour
     private float camRot = 0;
     public float mouseSensitivity = 100;
 
+    public float damage = 10f;
+
+    public float knockbackForce;
+   
+
     private void Awake()
     {
         controls = new Controls();
@@ -52,10 +57,10 @@ public class PlayerInput : MonoBehaviour
 
         controller.Move(velocity * Time.deltaTime);
 
+        
         Move();
-        Turn();
-
-
+        
+        Turn();       
     }
 
     public void Move()
@@ -84,12 +89,9 @@ public class PlayerInput : MonoBehaviour
         
         if (isGrounded == true)
         {
+           
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
-
-        velocity.y += gravity * Time.deltaTime;
-
-        controller.Move(velocity * Time.deltaTime);
     }
 
     public void Turn()
@@ -102,5 +104,45 @@ public class PlayerInput : MonoBehaviour
 
         cam.transform.localRotation = Quaternion.Euler(camRot, 0, 0);
         transform.Rotate(Vector3.up * mouseX);
+    }
+
+    public void OnShoot(InputAction.CallbackContext context)
+    {
+        if (context.performed == true)
+        {
+                RaycastHit hit;
+
+                if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit))
+                {
+                    
+                    
+                    Target target = hit.transform.GetComponent<Target>();
+                    
+                    if (target != null)
+                    {
+                        target.TakeDamage(damage);
+                    }
+                }
+
+                Knockback();
+            
+        }
+    }
+
+    public void Knockback()
+    {
+        Vector3 direction = Camera.main.transform.forward * -1;
+
+        velocity = direction * Mathf.Sqrt(knockbackForce * -2f * gravity);
+
+        Invoke("StopSliding", 0.4f);
+
+        //direction = Mathf.Sqrt(knockbackForce * -2f * gravity);
+        //controller.Move(direction * Mathf.Sqrt(knockbackForce * -2f * gravity));
+    }
+
+    void StopSliding()
+    {
+        velocity = Vector3.zero;
     }
 }
