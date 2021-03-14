@@ -1123,13 +1123,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4003014768775148070, guid: e1151a75db796e548aa510c6f1c3b0b2,
         type: 3}
+      propertyPath: speed
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 4003014768775148070, guid: e1151a75db796e548aa510c6f1c3b0b2,
+        type: 3}
       propertyPath: knockbackTime
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4003014768775148070, guid: e1151a75db796e548aa510c6f1c3b0b2,
         type: 3}
       propertyPath: knockbackForce
-      value: 10
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1151a75db796e548aa510c6f1c3b0b2, type: 3}

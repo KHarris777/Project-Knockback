@@ -26,6 +26,7 @@ public class PlayerInput : MonoBehaviour
     public float mouseSensitivity = 100;
 
     public float damage = 10f;
+    public float ammoCount = 3f;
 
     public float knockbackForce;
    
@@ -57,10 +58,16 @@ public class PlayerInput : MonoBehaviour
 
         controller.Move(velocity * Time.deltaTime);
 
-        
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+
         Move();
         
-        Turn();       
+        Turn();
+        
+        if( isGrounded == true)
+        {
+            ammoCount = 3f;
+        }
     }
 
     public void Move()
@@ -80,8 +87,7 @@ public class PlayerInput : MonoBehaviour
 
     public void Jump()
     {
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
-
+        
         if (isGrounded && velocity.y < 0)
         {
             velocity.y = -2f;
@@ -110,14 +116,15 @@ public class PlayerInput : MonoBehaviour
     {
         if (context.performed == true)
         {
+            if (ammoCount >= 1)
+            {
                 RaycastHit hit;
+                --ammoCount;
 
                 if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit))
                 {
-                    
-                    
                     Target target = hit.transform.GetComponent<Target>();
-                    
+
                     if (target != null)
                     {
                         target.TakeDamage(damage);
@@ -125,6 +132,11 @@ public class PlayerInput : MonoBehaviour
                 }
 
                 Knockback();
+            }
+            else
+            {
+                return;
+            }
             
         }
     }
@@ -143,6 +155,8 @@ public class PlayerInput : MonoBehaviour
 
     void StopSliding()
     {
-        velocity = Vector3.zero;
+             
+        velocity = Vector3.zero;     
+       
     }
 }
