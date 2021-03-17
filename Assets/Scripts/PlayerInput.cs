@@ -85,18 +85,20 @@ public class PlayerInput : MonoBehaviour
         transform.Translate(movement * speed * Time.deltaTime);
     }
 
-    public void Jump()
+    public void OnJump(InputAction.CallbackContext context)
     {
-        
-        if (isGrounded && velocity.y < 0)
+        if (context.performed == true)
         {
-            velocity.y = -2f;
-        }
-        
-        if (isGrounded == true)
-        {
-           
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            if (isGrounded && velocity.y < 0)
+            {
+                velocity.y = -2f;
+            }
+
+            if (isGrounded == true)
+            {
+
+                velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            }
         }
     }
 
@@ -141,6 +143,7 @@ public class PlayerInput : MonoBehaviour
         }
     }
 
+    
     public void Knockback()
     {
         Vector3 direction = Camera.main.transform.forward * -1;
