@@ -9,6 +9,12 @@ public class PlayerInput : MonoBehaviour
 
     public float speed = 12f;
     public float gravity = -9.81f;
+
+    Vector2 moveVec = Vector2.zero;
+    Vector2 lookVec = Vector2.zero;
+    //float lookVecY;
+   // float lookVecX;
+   
     public float jumpHeight = 3f;
 
     public Transform groundCheck;
@@ -20,10 +26,9 @@ public class PlayerInput : MonoBehaviour
     
     private Controls controls = null;
 
-    [SerializeField] private InputAction turning;
     private Camera cam = null;
     private float camRot = 0;
-    public float mouseSensitivity = 100;
+    public float sensitivity = 30;
 
     public float damage = 10f;
     public float ammoCount = 3f;
@@ -42,13 +47,13 @@ public class PlayerInput : MonoBehaviour
     private void OnEnable()
     {
         controls.PlayerInput.Enable();
-        turning.Enable();
+   
     }
 
     private void OnDisable()
     {
         controls.PlayerInput.Disable();
-        turning.Disable();
+        
     }
 
 
@@ -60,52 +65,68 @@ public class PlayerInput : MonoBehaviour
 
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
-        Move();
-        
-        Turn();
-        
-        if( isGrounded == true)
+        if (isGrounded && velocity.y < 0)
+        {
+            velocity.y = -2f;
+
+        }
+
+        Aim();
+
+        //Move();
+        Vector3 move = new Vector3(moveVec.x, 0, moveVec.y);
+        transform.Translate(move * speed * Time.deltaTime);
+
+
+        if (isGrounded == true)
         {
             ammoCount = 3f;
+
         }
-    }
 
-    public void Move()
-    {
-        var movementInput = controls.PlayerInput.Movement.ReadValue<Vector2>();
-
-        var movement = new Vector3()
+       /* if (lookVec != Vector2.zero)
         {
-            x = movementInput.x,
-            z = movementInput.y
-        }.normalized;
+            controller.transform.Rotate(new Vector3(0, lookVec.x * sensitivity * Time.deltaTime));
 
+            camRot -= lookVec.y;
+            camRot = Mathf.Clamp(camRot, -90, 90);
+
+            cam.transform.localRotation = Quaternion.Euler(camRot, 0, 0);
+            //transform.Rotate(Vector3.up * lookVecX);
+        }*/
         
-
-        transform.Translate(movement * speed * Time.deltaTime);
     }
+
+    public void OnMove(InputAction.CallbackContext context)
+    {
+        moveVec = context.ReadValue<Vector2>();
+    }
+
+    /*public void OnLook(InputAction.CallbackContext context)
+    {
+        lookVec = context.ReadValue<Vector2>();
+        
+    }*/
+
 
     public void OnJump(InputAction.CallbackContext context)
     {
         if (context.performed == true)
         {
-            if (isGrounded && velocity.y < 0)
-            {
-                velocity.y = -2f;
-            }
 
             if (isGrounded == true)
             {
 
-                velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+                velocity.y = Mathf.Sqrt(jumpHeight * -1f * gravity);
+            
             }
         }
     }
 
-    public void Turn()
+    public void Aim()
     {
-        float mouseX = turning.ReadValue<Vector2>().x * mouseSensitivity * Time.deltaTime;
-        float mouseY = turning.ReadValue<Vector2>().y * mouseSensitivity * Time.deltaTime;
+        float mouseX = controls.PlayerInput.Aim.ReadValue<Vector2>().x * sensitivity * Time.deltaTime;
+        float mouseY = controls.PlayerInput.Aim.ReadValue<Vector2>().y * sensitivity * Time.deltaTime;
 
         camRot -= mouseY;
         camRot = Mathf.Clamp(camRot, -90, 90);
@@ -118,6 +139,7 @@ public class PlayerInput : MonoBehaviour
     {
         if (context.performed == true)
         {
+            
             if (ammoCount >= 1)
             {
                 RaycastHit hit;
@@ -146,7 +168,7 @@ public class PlayerInput : MonoBehaviour
     
     public void Knockback()
     {
-        Vector3 direction = Camera.main.transform.forward * -1;
+        Vector3 direction = cam.transform.forward * -1;
 
         velocity = direction * Mathf.Sqrt(knockbackForce * -2f * gravity);
 

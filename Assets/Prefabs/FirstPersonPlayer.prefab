@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5187612507046627629}
   - component: {fileID: 5187612507046627626}
-  - component: {fileID: 5187612507046627627}
   - component: {fileID: 1541810788528710759}
   m_Layer: 0
   m_Name: Main Camera
@@ -78,14 +77,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &5187612507046627627
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5187612507046627624}
-  m_Enabled: 1
 --- !u!114 &1541810788528710759
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,6 +198,7 @@ GameObject:
   - component: {fileID: 5187612508410546108}
   - component: {fileID: 5187612508410546109}
   - component: {fileID: 5187612508410546111}
+  - component: {fileID: 4844262726395244495}
   - component: {fileID: 8748009745657553815}
   m_Layer: 0
   m_Name: FirstPersonPlayer
@@ -271,34 +263,23 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 256
-  turning:
-    m_Name: Turning
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: a2b9ac45-95b2-40f9-bb84-469c7bb8c9a0
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: b89bd53f-17f9-4e78-97d7-daaea3977eda
-      m_Path: <Mouse>/delta
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Turning
-      m_Flags: 0
-    - m_Name: 
-      m_Id: 9cfe855b-3fc0-4586-a02e-7a985b3b5907
-      m_Path: <Gamepad>/rightStick
-      m_Interactions: 
-      m_Processors: ScaleVector2(x=10,y=10)
-      m_Groups: 
-      m_Action: Turning
-      m_Flags: 0
-  mouseSensitivity: 30
+  sensitivity: 30
   damage: 10
   ammoCount: 3
   knockbackForce: 12
+--- !u!114 &4844262726395244495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5187612508410546106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44a5a3f1df5093447bdedabd538fc8bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 30
 --- !u!114 &8748009745657553815
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -343,8 +324,8 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5187612508410546111}
-        m_MethodName: Move
-        m_Mode: 1
+        m_MethodName: OnMove
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -370,7 +351,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 8d446a82-2484-431a-88df-58749646604a
     m_ActionName: PlayerInput/Shoot[/DualShock4GamepadHID/rightTrigger]
-  m_NeverAutoSwitchControlSchemes: 0
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5187612508410546111}
+        m_MethodName: OnLook
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 1f034d5d-9958-44bf-8dae-64b734fb6f81
+    m_ActionName: PlayerInput/Aim[/Mouse/delta,/XInputControllerWindows/rightStick]
+  m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: PlayerInput
   m_SplitScreenIndex: -1
@@ -584,6 +580,16 @@ PrefabInstance:
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6359428824870024445, guid: 5319a166cfc8d7c4fbf474b962899109,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 872bcd7f88828f74687b29dcfbd9e353, type: 2}
+    - target: {fileID: 6359428824870024445, guid: 5319a166cfc8d7c4fbf474b962899109,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7d0d55fba081fdc4fbfea1a4ca8dae19, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5319a166cfc8d7c4fbf474b962899109, type: 3}
 --- !u!4 &9146131338685254748 stripped

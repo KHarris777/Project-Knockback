@@ -207,13 +207,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 328760903}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.9, y: 1.24, z: -1.75}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 0.42960873, w: 0.9030152}
+  m_LocalPosition: {x: -12.45, y: 3.16, z: -1.75}
+  m_LocalScale: {x: 3.1483, y: 14.692801, z: 3.1483}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 50.885002}
 --- !u!1 &568234525
 GameObject:
   m_ObjectHideFlags: 0
@@ -801,7 +801,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1887900586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -820,18 +820,7 @@ MonoBehaviour:
   m_JoinBehavior: 1
   m_PlayerJoinedEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_PlayerLeftEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -865,13 +854,13 @@ MonoBehaviour:
   m_PlayerPrefab: {fileID: 5187612508410546106, guid: cdec5a57f1b087a4893961ff15588533,
     type: 3}
   m_SplitScreen: 1
-  m_MaintainAspectRatioInSplitScreen: 1
+  m_MaintainAspectRatioInSplitScreen: 0
   m_FixedNumberOfSplitScreens: -1
   m_SplitScreenRect:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 2
+    width: 1
     height: 1
 --- !u!4 &1887900587
 Transform:
@@ -1081,6 +1070,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2388621191278206794, guid: cdec5a57f1b087a4893961ff15588533,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 872bcd7f88828f74687b29dcfbd9e353, type: 2}
+    - target: {fileID: 2388621191278206794, guid: cdec5a57f1b087a4893961ff15588533,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7d0d55fba081fdc4fbfea1a4ca8dae19, type: 2}
     - target: {fileID: 5187612508410546106, guid: cdec5a57f1b087a4893961ff15588533,
         type: 3}
       propertyPath: m_Name
@@ -1089,7 +1088,7 @@ PrefabInstance:
     - target: {fileID: 5187612508410546106, guid: cdec5a57f1b087a4893961ff15588533,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5187612508410546108, guid: cdec5a57f1b087a4893961ff15588533,
         type: 3}
@@ -1145,6 +1144,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5187612508410546111, guid: cdec5a57f1b087a4893961ff15588533,
+        type: 3}
+      propertyPath: regGravity
+      value: -19.81
+      objectReference: {fileID: 0}
+    - target: {fileID: 5187612508410546111, guid: cdec5a57f1b087a4893961ff15588533,
+        type: 3}
+      propertyPath: inputGravity
+      value: -9.81
+      objectReference: {fileID: 0}
+    - target: {fileID: 6130266383783659076, guid: cdec5a57f1b087a4893961ff15588533,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.0504
       objectReference: {fileID: 0}
     - target: {fileID: 8748009745657553815, guid: cdec5a57f1b087a4893961ff15588533,
         type: 3}
