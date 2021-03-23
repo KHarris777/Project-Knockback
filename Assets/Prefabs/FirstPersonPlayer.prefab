@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5187612507046627629}
   - component: {fileID: 5187612507046627626}
   - component: {fileID: 1541810788528710759}
+  - component: {fileID: 8119984678605676978}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -108,6 +109,21 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!114 &8119984678605676978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5187612507046627624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 413a32ff7b5bb0146935a14ef3f6ca62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sensitivity: 10
+  player: {fileID: 5187612508410546108}
+  Cam: {fileID: 5187612507046627626}
 --- !u!1 &5187612507138548602
 GameObject:
   m_ObjectHideFlags: 0
@@ -263,7 +279,6 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 256
-  sensitivity: 30
   damage: 10
   ammoCount: 3
   knockbackForce: 12
@@ -353,7 +368,7 @@ MonoBehaviour:
     m_ActionName: PlayerInput/Shoot[/DualShock4GamepadHID/rightTrigger]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5187612508410546111}
+      - m_Target: {fileID: 8119984678605676978}
         m_MethodName: OnLook
         m_Mode: 0
         m_Arguments:
@@ -367,7 +382,7 @@ MonoBehaviour:
     m_ActionId: 1f034d5d-9958-44bf-8dae-64b734fb6f81
     m_ActionName: PlayerInput/Aim[/Mouse/delta,/XInputControllerWindows/rightStick]
   m_NeverAutoSwitchControlSchemes: 1
-  m_DefaultControlScheme: 
+  m_DefaultControlScheme: Controller
   m_DefaultActionMap: PlayerInput
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 5187612507046627626}

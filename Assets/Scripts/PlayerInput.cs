@@ -12,8 +12,7 @@ public class PlayerInput : MonoBehaviour
 
     Vector2 moveVec = Vector2.zero;
     Vector2 lookVec = Vector2.zero;
-    //float lookVecY;
-   // float lookVecX;
+    
    
     public float jumpHeight = 3f;
 
@@ -27,20 +26,19 @@ public class PlayerInput : MonoBehaviour
     private Controls controls = null;
 
     private Camera cam = null;
-    private float camRot = 0;
-    public float sensitivity = 30;
 
     public float damage = 10f;
     public float ammoCount = 3f;
 
     public float knockbackForce;
+
    
 
     private void Awake()
     {
         controls = new Controls();
         cam = Camera.main;
-        
+
         Cursor.lockState = CursorLockMode.Locked;
     }
    
@@ -55,7 +53,14 @@ public class PlayerInput : MonoBehaviour
         controls.PlayerInput.Disable();
         
     }
-
+    private void FixedUpdate()
+    {
+        Move();
+        
+        //Move
+        //Vector3 move = new Vector3(moveVec.x, 0, moveVec.y);
+        //transform.Translate(move * speed * Time.deltaTime);
+    }
 
     void Update()
     {
@@ -71,30 +76,11 @@ public class PlayerInput : MonoBehaviour
 
         }
 
-        Aim();
-
-        //Move();
-        Vector3 move = new Vector3(moveVec.x, 0, moveVec.y);
-        transform.Translate(move * speed * Time.deltaTime);
-
-
         if (isGrounded == true)
         {
             ammoCount = 3f;
 
         }
-
-       /* if (lookVec != Vector2.zero)
-        {
-            controller.transform.Rotate(new Vector3(0, lookVec.x * sensitivity * Time.deltaTime));
-
-            camRot -= lookVec.y;
-            camRot = Mathf.Clamp(camRot, -90, 90);
-
-            cam.transform.localRotation = Quaternion.Euler(camRot, 0, 0);
-            //transform.Rotate(Vector3.up * lookVecX);
-        }*/
-        
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -102,12 +88,16 @@ public class PlayerInput : MonoBehaviour
         moveVec = context.ReadValue<Vector2>();
     }
 
-    /*public void OnLook(InputAction.CallbackContext context)
+    public void Move()
     {
-        lookVec = context.ReadValue<Vector2>();
-        
-    }*/
+        var movement = new Vector3()
+        {
+            x = moveVec.x,
+            z = moveVec.y
+        }.normalized;
 
+        transform.Translate(movement * speed * Time.deltaTime);
+    }
 
     public void OnJump(InputAction.CallbackContext context)
     {
@@ -123,17 +113,6 @@ public class PlayerInput : MonoBehaviour
         }
     }
 
-    public void Aim()
-    {
-        float mouseX = controls.PlayerInput.Aim.ReadValue<Vector2>().x * sensitivity * Time.deltaTime;
-        float mouseY = controls.PlayerInput.Aim.ReadValue<Vector2>().y * sensitivity * Time.deltaTime;
-
-        camRot -= mouseY;
-        camRot = Mathf.Clamp(camRot, -90, 90);
-
-        cam.transform.localRotation = Quaternion.Euler(camRot, 0, 0);
-        transform.Rotate(Vector3.up * mouseX);
-    }
 
     public void OnShoot(InputAction.CallbackContext context)
     {
@@ -174,8 +153,6 @@ public class PlayerInput : MonoBehaviour
 
         Invoke("StopSliding", 0.4f);
 
-        //direction = Mathf.Sqrt(knockbackForce * -2f * gravity);
-        //controller.Move(direction * Mathf.Sqrt(knockbackForce * -2f * gravity));
     }
 
     void StopSliding()
@@ -184,4 +161,5 @@ public class PlayerInput : MonoBehaviour
         velocity = Vector3.zero;     
        
     }
+
 }
