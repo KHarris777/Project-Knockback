@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 413a32ff7b5bb0146935a14ef3f6ca62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensitivity: 10
+  sensitivity: 30
   player: {fileID: 5187612508410546108}
   Cam: {fileID: 5187612507046627626}
 --- !u!1 &5187612507138548602
@@ -279,6 +279,7 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 256
+  playerCam: {fileID: 5187612507046627626}
   damage: 10
   ammoCount: 3
   knockbackForce: 12

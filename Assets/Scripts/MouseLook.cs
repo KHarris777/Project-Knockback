@@ -12,14 +12,6 @@ public class MouseLook : MonoBehaviour
     public Transform player;
 
     public Camera Cam;
-    
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        //player = transform;
-        //playerCam = Camera.main.transform;
-    }
 
     // Update is called once per frame
     void Update()
@@ -41,7 +33,6 @@ public class MouseLook : MonoBehaviour
         lookVec.x = Mathf.Clamp(lookVec.x, -80, 80);
         transform.rotation = Quaternion.Euler(lookVec);
         player.transform.localEulerAngles = new Vector3(0, lookVec.y, 0);
-        //player.Rotate(Vector3.up * lookVec.y);
     }
 
     //Old look code

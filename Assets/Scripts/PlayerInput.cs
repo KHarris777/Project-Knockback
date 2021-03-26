@@ -11,8 +11,6 @@ public class PlayerInput : MonoBehaviour
     public float gravity = -9.81f;
 
     Vector2 moveVec = Vector2.zero;
-    Vector2 lookVec = Vector2.zero;
-    
    
     public float jumpHeight = 3f;
 
@@ -25,7 +23,7 @@ public class PlayerInput : MonoBehaviour
     
     private Controls controls = null;
 
-    private Camera cam = null;
+    public Camera playerCam;
 
     public float damage = 10f;
     public float ammoCount = 3f;
@@ -37,7 +35,7 @@ public class PlayerInput : MonoBehaviour
     private void Awake()
     {
         controls = new Controls();
-        cam = Camera.main;
+        //cam = Camera.main;
 
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -56,10 +54,6 @@ public class PlayerInput : MonoBehaviour
     private void FixedUpdate()
     {
         Move();
-        
-        //Move
-        //Vector3 move = new Vector3(moveVec.x, 0, moveVec.y);
-        //transform.Translate(move * speed * Time.deltaTime);
     }
 
     void Update()
@@ -124,7 +118,7 @@ public class PlayerInput : MonoBehaviour
                 RaycastHit hit;
                 --ammoCount;
 
-                if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit))
+                if (Physics.Raycast(playerCam.transform.position, playerCam.transform.forward, out hit))
                 {
                     Target target = hit.transform.GetComponent<Target>();
 
@@ -147,7 +141,7 @@ public class PlayerInput : MonoBehaviour
     
     public void Knockback()
     {
-        Vector3 direction = cam.transform.forward * -1;
+        Vector3 direction = playerCam.transform.forward * -1;
 
         velocity = direction * Mathf.Sqrt(knockbackForce * -2f * gravity);
 
