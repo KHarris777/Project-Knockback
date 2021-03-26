@@ -38,6 +38,7 @@ public class PlayerInput : MonoBehaviour
         //cam = Camera.main;
 
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
    
     private void OnEnable()
@@ -145,7 +146,7 @@ public class PlayerInput : MonoBehaviour
 
         velocity = direction * Mathf.Sqrt(knockbackForce * -2f * gravity);
 
-        Invoke("StopSliding", 0.4f);
+        Invoke("StopSliding", 0.5f);
 
     }
 
