@@ -7,11 +7,14 @@ public class MouseLook : MonoBehaviour
 {
     Vector2 lookVec;
    
-    public float sensitivity = 30f;
+    public float sensitivityY = 30f;
+    public float sensitivityX = 30f;
 
     public Transform player;
 
     public Camera Cam;
+
+    public GameObject stusLabel;
 
     // Update is called once per frame
     void Update()
@@ -23,16 +26,34 @@ public class MouseLook : MonoBehaviour
     {       
         Vector2 lookValue = context.ReadValue<Vector2>();
 
-        lookVec.x += -lookValue.y * sensitivity * Time.deltaTime;
-        lookVec.y += lookValue.x * sensitivity * Time.deltaTime;
+        lookVec.x += -lookValue.y * sensitivityY * Time.deltaTime;
+        lookVec.y += lookValue.x * sensitivityX * Time.deltaTime;
 
     }
 
     public void Look()
     {
-        lookVec.x = Mathf.Clamp(lookVec.x, -80, 80);
+        lookVec.x = Mathf.Clamp(lookVec.x, -90, 90);
         transform.rotation = Quaternion.Euler(lookVec);
         player.transform.localEulerAngles = new Vector3(0, lookVec.y, 0);
+    }
+
+    public void ForStu(InputAction.CallbackContext context)
+    {
+        if (context.performed == true)
+        {
+            stusLabel.SetActive(true);
+            sensitivityY = -30f;
+        }
+    }
+
+    public void setInvertNormal(InputAction.CallbackContext context)
+    {
+        if (context.performed == true)
+        {
+            stusLabel.SetActive(false);
+            sensitivityY = 30f;
+        }
     }
 
     //Old look code

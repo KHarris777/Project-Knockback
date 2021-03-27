@@ -36,6 +36,22 @@
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "For Stu",
+                    "type": "Button",
+                    "id": "6f4f6977-9a70-4a78-91c8-0a9dd973335b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Set Invert to Normal",
+                    "type": "Button",
+                    "id": "fb7d3790-a686-46b4-a370-3b88674164a0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -168,6 +184,28 @@
                     "processors": "ScaleVector2(x=10,y=10)",
                     "groups": "Controller",
                     "action": "Aim",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ea3f6da5-9812-4043-8a8b-5b683acdf433",
+                    "path": "<Gamepad>/dpad/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "For Stu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bd3b9a61-b8ae-4f77-91fd-a95c1f8087d4",
+                    "path": "<Gamepad>/dpad/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "Set Invert to Normal",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

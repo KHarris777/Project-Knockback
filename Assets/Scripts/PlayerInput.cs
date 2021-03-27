@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerInput : MonoBehaviour
 {
@@ -21,7 +22,7 @@ public class PlayerInput : MonoBehaviour
     Vector3 velocity;
     bool isGrounded;
     
-    private Controls controls = null;
+    public Controls controls = null;
 
     public Camera playerCam;
 
@@ -30,7 +31,8 @@ public class PlayerInput : MonoBehaviour
 
     public float knockbackForce;
 
-   
+    public GameObject AmmoWarning;
+    public Text AmmoLabel;
 
     private void Awake()
     {
@@ -71,10 +73,18 @@ public class PlayerInput : MonoBehaviour
 
         }
 
+        AmmoLabel.text = ammoCount.ToString();
+
         if (isGrounded == true)
         {
             ammoCount = 3f;
+            AmmoWarning.SetActive(false);
 
+        }
+
+        if(ammoCount <= 1f)
+        {
+            AmmoWarning.SetActive(true);
         }
     }
 

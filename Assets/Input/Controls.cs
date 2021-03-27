@@ -49,6 +49,22 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""For Stu"",
+                    ""type"": ""Button"",
+                    ""id"": ""6f4f6977-9a70-4a78-91c8-0a9dd973335b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Set Invert to Normal"",
+                    ""type"": ""Button"",
+                    ""id"": ""fb7d3790-a686-46b4-a370-3b88674164a0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -183,6 +199,28 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""action"": ""Aim"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ea3f6da5-9812-4043-8a8b-5b683acdf433"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""For Stu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bd3b9a61-b8ae-4f77-91fd-a95c1f8087d4"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""Set Invert to Normal"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -223,6 +261,8 @@ public class @Controls : IInputActionCollection, IDisposable
         m_PlayerInput_Movement = m_PlayerInput.FindAction("Movement", throwIfNotFound: true);
         m_PlayerInput_Shoot = m_PlayerInput.FindAction("Shoot", throwIfNotFound: true);
         m_PlayerInput_Aim = m_PlayerInput.FindAction("Aim", throwIfNotFound: true);
+        m_PlayerInput_ForStu = m_PlayerInput.FindAction("For Stu", throwIfNotFound: true);
+        m_PlayerInput_SetInverttoNormal = m_PlayerInput.FindAction("Set Invert to Normal", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -276,6 +316,8 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_PlayerInput_Movement;
     private readonly InputAction m_PlayerInput_Shoot;
     private readonly InputAction m_PlayerInput_Aim;
+    private readonly InputAction m_PlayerInput_ForStu;
+    private readonly InputAction m_PlayerInput_SetInverttoNormal;
     public struct PlayerInputActions
     {
         private @Controls m_Wrapper;
@@ -284,6 +326,8 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @Movement => m_Wrapper.m_PlayerInput_Movement;
         public InputAction @Shoot => m_Wrapper.m_PlayerInput_Shoot;
         public InputAction @Aim => m_Wrapper.m_PlayerInput_Aim;
+        public InputAction @ForStu => m_Wrapper.m_PlayerInput_ForStu;
+        public InputAction @SetInverttoNormal => m_Wrapper.m_PlayerInput_SetInverttoNormal;
         public InputActionMap Get() { return m_Wrapper.m_PlayerInput; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -305,6 +349,12 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Aim.started -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnAim;
                 @Aim.performed -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnAim;
                 @Aim.canceled -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnAim;
+                @ForStu.started -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnForStu;
+                @ForStu.performed -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnForStu;
+                @ForStu.canceled -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnForStu;
+                @SetInverttoNormal.started -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnSetInverttoNormal;
+                @SetInverttoNormal.performed -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnSetInverttoNormal;
+                @SetInverttoNormal.canceled -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnSetInverttoNormal;
             }
             m_Wrapper.m_PlayerInputActionsCallbackInterface = instance;
             if (instance != null)
@@ -321,6 +371,12 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Aim.started += instance.OnAim;
                 @Aim.performed += instance.OnAim;
                 @Aim.canceled += instance.OnAim;
+                @ForStu.started += instance.OnForStu;
+                @ForStu.performed += instance.OnForStu;
+                @ForStu.canceled += instance.OnForStu;
+                @SetInverttoNormal.started += instance.OnSetInverttoNormal;
+                @SetInverttoNormal.performed += instance.OnSetInverttoNormal;
+                @SetInverttoNormal.canceled += instance.OnSetInverttoNormal;
             }
         }
     }
@@ -349,5 +405,7 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
         void OnAim(InputAction.CallbackContext context);
+        void OnForStu(InputAction.CallbackContext context);
+        void OnSetInverttoNormal(InputAction.CallbackContext context);
     }
 }
