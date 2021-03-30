@@ -34,6 +34,9 @@ public class PlayerInput : MonoBehaviour
     public GameObject AmmoWarning;
     public Text AmmoLabel;
 
+    public ParticleSystem muzzleFlash;
+    public ParticleSystem bulletTrail;
+
     private void Awake()
     {
         controls = new Controls();
@@ -128,6 +131,8 @@ public class PlayerInput : MonoBehaviour
             {
                 RaycastHit hit;
                 --ammoCount;
+                muzzleFlash.Play();
+                bulletTrail.Play();
 
                 if (Physics.Raycast(playerCam.transform.position, playerCam.transform.forward, out hit))
                 {
