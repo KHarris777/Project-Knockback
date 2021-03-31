@@ -7,8 +7,8 @@ public class MouseLook : MonoBehaviour
 {
     Vector2 lookVec;
    
-    public float sensitivityY = 30f;
-    public float sensitivityX = 30f;
+    public float sensitivityY = 25f;
+    public float sensitivityX = 25f;
 
     public Transform player;
 
@@ -23,11 +23,14 @@ public class MouseLook : MonoBehaviour
     }
 
     public void OnLook(InputAction.CallbackContext context)
-    {       
+    {
         Vector2 lookValue = context.ReadValue<Vector2>();
-
-        lookVec.x += -lookValue.y * sensitivityY * Time.deltaTime;
-        lookVec.y += lookValue.x * sensitivityX * Time.deltaTime;
+       
+        if (context.performed)
+        {
+            lookVec.x += -lookValue.y * sensitivityY * Time.deltaTime;
+            lookVec.y += lookValue.x * sensitivityX * Time.deltaTime;
+        }
 
     }
 
@@ -43,7 +46,7 @@ public class MouseLook : MonoBehaviour
         if (context.performed == true)
         {
             stusLabel.SetActive(true);
-            sensitivityY = -30f;
+            sensitivityY = -25f;
         }
     }
 
@@ -52,7 +55,7 @@ public class MouseLook : MonoBehaviour
         if (context.performed == true)
         {
             stusLabel.SetActive(false);
-            sensitivityY = 30f;
+            sensitivityY = 25f;
         }
     }
 
