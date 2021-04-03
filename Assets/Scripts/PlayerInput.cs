@@ -37,6 +37,10 @@ public class PlayerInput : MonoBehaviour
     public ParticleSystem muzzleFlash;
     public ParticleSystem bulletTrail;
 
+    [HideInInspector] public bool hasFired = false;
+
+    [SerializeField] private GameObject ppVolume;
+
     private void Awake()
     {
         controls = new Controls();
@@ -126,25 +130,29 @@ public class PlayerInput : MonoBehaviour
     {
         if (context.performed == true)
         {
-            
-            if (ammoCount >= 1)
+            if(hasFired == false)
             {
-                RaycastHit hit;
-                --ammoCount;
-                muzzleFlash.Play();
-                bulletTrail.Play();
-
-                if (Physics.Raycast(playerCam.transform.position, playerCam.transform.forward, out hit))
+                StartCoroutine(FireRate());
+                
+                if (ammoCount >= 1)
                 {
-                    Target target = hit.transform.GetComponent<Target>();
+                    RaycastHit hit;
+                    --ammoCount;
+                    muzzleFlash.Play();
+                    bulletTrail.Play();
 
-                    if (target != null)
+                    if (Physics.Raycast(playerCam.transform.position, playerCam.transform.forward, out hit))
                     {
-                        target.TakeDamage(damage);
-                    }
-                }
+                        Target target = hit.transform.GetComponent<Target>();
 
-                Knockback();
+                        if (target != null)
+                        {
+                            target.TakeDamage(damage);
+                        }
+                    }
+
+                    Knockback();
+                }
             }
             else
             {
@@ -154,9 +162,18 @@ public class PlayerInput : MonoBehaviour
         }
     }
 
+    private IEnumerator FireRate()
+    {
+        hasFired = true;
+        yield return new WaitForSeconds(0.45f);
+        hasFired = false;
+    }
     
+
     public void Knockback()
     {
+        ppVolume.SetActive(true);
+        
         Vector3 direction = playerCam.transform.forward * -1;
 
         velocity = direction * Mathf.Sqrt(knockbackForce * -2f * gravity);
@@ -168,8 +185,10 @@ public class PlayerInput : MonoBehaviour
     void StopSliding()
     {
              
-        velocity = Vector3.zero;     
-       
+        velocity = Vector3.zero;
+        ppVolume.SetActive(false);
     }
+
+
 
 }

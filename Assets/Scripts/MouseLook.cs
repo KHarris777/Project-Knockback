@@ -7,8 +7,8 @@ public class MouseLook : MonoBehaviour
 {
     Vector2 lookVec;
    
-    public float sensitivityY = 25f;
-    public float sensitivityX = 25f;
+    public float sensitivityY = 10f;
+    public float sensitivityX = 10f;
 
     public Transform player;
 
@@ -17,20 +17,21 @@ public class MouseLook : MonoBehaviour
     public GameObject stusLabel;
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         Look();  
     }
 
     public void OnLook(InputAction.CallbackContext context)
     {
-        Vector2 lookValue = context.ReadValue<Vector2>();
        
-        if (context.performed)
-        {
-            lookVec.x += -lookValue.y * sensitivityY * Time.deltaTime;
-            lookVec.y += lookValue.x * sensitivityX * Time.deltaTime;
-        }
+        Vector2 lookValue = context.ReadValue<Vector2>();
+        //lookValue *= 0.5f; // Account for scaling applied directly in Windows code by old input system.
+        //lookValue *= 0.1f; // Account for sensitivity setting on old Mouse X and Y axes.
+
+
+        lookVec.x += -lookValue.y * sensitivityY * Time.deltaTime;
+        lookVec.y += lookValue.x * sensitivityX * Time.deltaTime;
 
     }
 
@@ -46,7 +47,7 @@ public class MouseLook : MonoBehaviour
         if (context.performed == true)
         {
             stusLabel.SetActive(true);
-            sensitivityY = -25f;
+            sensitivityY = -10f;
         }
     }
 
@@ -55,7 +56,7 @@ public class MouseLook : MonoBehaviour
         if (context.performed == true)
         {
             stusLabel.SetActive(false);
-            sensitivityY = 25f;
+            sensitivityY = 10f;
         }
     }
 

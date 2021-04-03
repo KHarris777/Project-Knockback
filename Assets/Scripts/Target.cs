@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 public class Target : MonoBehaviour
 {
-    public float health = 30f;
+    public float health = 20f;
     [SerializeField]private Transform player;
     [SerializeField] private Transform respawnPoint;
 
@@ -42,7 +42,7 @@ public class Target : MonoBehaviour
     public IEnumerator Death()
     {
         Debug.Log("enemy down");
-        //gameObject.GetComponent<PlayerInput>().ammoCount = 0f;
+        gameObject.GetComponent<PlayerInput>().hasFired = true;
         playerDeathPanel.SetActive(true);
         playerModel.SetActive(false);
         gunModel.SetActive(false);
@@ -52,12 +52,21 @@ public class Target : MonoBehaviour
 
     void Respawn()
     {
-        health = 30f;
+        health = 20f;
         playerModel.SetActive(true);
         gunModel.SetActive(true);
         player.transform.position = respawnPoint.transform.position;
         Physics.SyncTransforms();
         playerDeathPanel.SetActive(false);
         lifeWarning.SetActive(false);
+        gameObject.GetComponent<PlayerInput>().hasFired = false;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("KillBox"))
+        {
+            StartCoroutine(Death());
+        }
     }
 }
