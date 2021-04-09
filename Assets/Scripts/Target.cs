@@ -18,6 +18,8 @@ public class Target : MonoBehaviour
     public Text healthLabel;
     public GameObject lifeWarning;
 
+    [SerializeField] private GameObject arm;
+
     private void Update()
     {
         healthLabel.text = health.ToString();
@@ -29,6 +31,18 @@ public class Target : MonoBehaviour
     }
 
     public void TakeDamage (float amount)
+    {
+        Debug.Log("hit");
+        
+
+        health -= amount;
+        if (health <= 0f)
+        {
+            StartCoroutine(Death());
+        }
+    }
+
+    public void TakeMeleeDamage(float amount)
     {
         Debug.Log("hit");
         AudioManager.Instance.Play("Hit");
@@ -45,9 +59,11 @@ public class Target : MonoBehaviour
         Debug.Log("enemy down");
         AudioManager.Instance.Play("Death");
         gameObject.GetComponent<PlayerInput>().hasFired = true;
+        gameObject.GetComponent<PlayerInput>().hasPunched = true;
         playerDeathPanel.SetActive(true);
         playerModel.SetActive(false);
         gunModel.SetActive(false);
+        arm.SetActive(false);
         yield return new WaitForSeconds(2f);
         Respawn();
     }
@@ -61,7 +77,9 @@ public class Target : MonoBehaviour
         Physics.SyncTransforms();
         playerDeathPanel.SetActive(false);
         lifeWarning.SetActive(false);
+        arm.SetActive(true);
         gameObject.GetComponent<PlayerInput>().hasFired = false;
+        gameObject.GetComponent<PlayerInput>().hasPunched = false;
     }
 
     private void OnTriggerEnter(Collider other)

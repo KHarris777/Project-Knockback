@@ -41,6 +41,8 @@ public class MouseLook : MonoBehaviour
         transform.rotation = Quaternion.Euler(lookVec);
         player.transform.localEulerAngles = new Vector3(0, lookVec.y, 0);
     }
+       
+    
 
     public void ForStu(InputAction.CallbackContext context)
     {

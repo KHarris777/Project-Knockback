@@ -43,6 +43,12 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] private GameObject greenLight;
     [SerializeField] private GameObject redLight;
 
+    public float meleeRange = 10f;
+    public float meleeDamage = 20f;
+    [HideInInspector] public bool hasPunched = false;
+    [SerializeField] private GameObject normalArm;
+    [SerializeField] private GameObject punchingArm;
+
     private void Awake()
     {
         controls = new Controls();
@@ -161,6 +167,7 @@ public class PlayerInput : MonoBehaviour
                         if (target != null)
                         {
                             target.TakeDamage(damage);
+                            AudioManager.Instance.Play("Hit");
                         }
                     }
 
@@ -202,6 +209,46 @@ public class PlayerInput : MonoBehaviour
         ppVolume.SetActive(false);
     }
 
+    public void OnMelee(InputAction.CallbackContext context)
+    {
+        if (context.performed == true)
+        {
+            if (hasPunched == false)
+            {
+                StartCoroutine(FireRate());
+                normalArm.SetActive(false);
+                punchingArm.SetActive(true);
+                StartCoroutine(MeleeRate());
+                RaycastHit hit;
+                
+                if (Physics.Raycast(playerCam.transform.position, playerCam.transform.forward, out hit, meleeRange))
+                {
+                    Target target = hit.transform.GetComponent<Target>();
 
+                    if (target != null)
+                    {
+                        target.TakeDamage(meleeDamage);
+                        AudioManager.Instance.Play("MeleeHit");
+                    }
+                }
+
+            }
+            else
+            {
+                return;
+            }
+
+        }
+    }
+    private IEnumerator MeleeRate()
+    {
+        
+        hasPunched = true;
+        yield return new WaitForSeconds(0.1f);
+        normalArm.SetActive(true);
+        punchingArm.SetActive(false);
+        yield return new WaitForSeconds(0.35f);
+        hasPunched = false;
+    }
 
 }

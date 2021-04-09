@@ -9,5 +9,6 @@ public class PlayerJoinManager : MonoBehaviour
     public void OnPlayerJoin()
     {
         CameraBeforeJoin.SetActive(false);
+        AudioManager.Instance.Stop("LevelTheme");
     }
 }

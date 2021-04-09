@@ -17119,7 +17119,7 @@ MonoBehaviour:
   sounds:
   - name: Death
     clip: {fileID: 8300000, guid: 065fc752d14f96b47b74842c48543828, type: 3}
-    volume: 0.9
+    volume: 0.7
     pitch: 1
     priority: 0
     loop: 0
@@ -17138,6 +17138,20 @@ MonoBehaviour:
     priority: 0
     loop: 0
     source: {fileID: 0}
+  - name: MeleeHit
+    clip: {fileID: 8300000, guid: 25c6e8c1a51f2324ca1d34d98af40d36, type: 3}
+    volume: 1
+    pitch: 1
+    priority: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: LevelTheme
+    clip: {fileID: 8300000, guid: e5e83289068d7e24c859fb36c83ec42a, type: 3}
+    volume: 0.5
+    pitch: 1
+    priority: 0
+    loop: 1
+    source: {fileID: 0}
 --- !u!4 &1546118411
 Transform:
   m_ObjectHideFlags: 0
@@ -17145,8 +17159,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1546118409}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3, y: 6.3, z: -3.4}
+  m_LocalRotation: {x: -0, y: -0, z: -0.0000000074505797, w: 1}
+  m_LocalPosition: {x: 3, y: 6.300003, z: -3.4000015}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

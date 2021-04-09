@@ -65,6 +65,14 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Melee"",
+                    ""type"": ""Button"",
+                    ""id"": ""4cfc2052-a78b-4f6a-96ee-34538d959af4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -221,6 +229,28 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""action"": ""Set Invert to Normal"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""25eeaed3-966f-4876-b665-64312c1aa724"",
+                    ""path"": ""<Gamepad>/rightStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""Melee"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""464829f3-8b6a-4e6b-a2b7-89dda1cefb86"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Melee"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -263,6 +293,7 @@ public class @Controls : IInputActionCollection, IDisposable
         m_PlayerInput_Aim = m_PlayerInput.FindAction("Aim", throwIfNotFound: true);
         m_PlayerInput_ForStu = m_PlayerInput.FindAction("For Stu", throwIfNotFound: true);
         m_PlayerInput_SetInverttoNormal = m_PlayerInput.FindAction("Set Invert to Normal", throwIfNotFound: true);
+        m_PlayerInput_Melee = m_PlayerInput.FindAction("Melee", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -318,6 +349,7 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_PlayerInput_Aim;
     private readonly InputAction m_PlayerInput_ForStu;
     private readonly InputAction m_PlayerInput_SetInverttoNormal;
+    private readonly InputAction m_PlayerInput_Melee;
     public struct PlayerInputActions
     {
         private @Controls m_Wrapper;
@@ -328,6 +360,7 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @Aim => m_Wrapper.m_PlayerInput_Aim;
         public InputAction @ForStu => m_Wrapper.m_PlayerInput_ForStu;
         public InputAction @SetInverttoNormal => m_Wrapper.m_PlayerInput_SetInverttoNormal;
+        public InputAction @Melee => m_Wrapper.m_PlayerInput_Melee;
         public InputActionMap Get() { return m_Wrapper.m_PlayerInput; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -355,6 +388,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @SetInverttoNormal.started -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnSetInverttoNormal;
                 @SetInverttoNormal.performed -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnSetInverttoNormal;
                 @SetInverttoNormal.canceled -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnSetInverttoNormal;
+                @Melee.started -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnMelee;
+                @Melee.performed -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnMelee;
+                @Melee.canceled -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnMelee;
             }
             m_Wrapper.m_PlayerInputActionsCallbackInterface = instance;
             if (instance != null)
@@ -377,6 +413,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @SetInverttoNormal.started += instance.OnSetInverttoNormal;
                 @SetInverttoNormal.performed += instance.OnSetInverttoNormal;
                 @SetInverttoNormal.canceled += instance.OnSetInverttoNormal;
+                @Melee.started += instance.OnMelee;
+                @Melee.performed += instance.OnMelee;
+                @Melee.canceled += instance.OnMelee;
             }
         }
     }
@@ -407,5 +446,6 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnAim(InputAction.CallbackContext context);
         void OnForStu(InputAction.CallbackContext context);
         void OnSetInverttoNormal(InputAction.CallbackContext context);
+        void OnMelee(InputAction.CallbackContext context);
     }
 }
