@@ -31,8 +31,7 @@ public class Target : MonoBehaviour
     public void TakeDamage (float amount)
     {
         Debug.Log("hit");
-        AudioManager.Instance.Play("Hit");
-
+        
         health -= amount;
         if (health <= 0f)
         {
@@ -43,12 +42,11 @@ public class Target : MonoBehaviour
     public IEnumerator Death()
     {
         Debug.Log("enemy down");
-        AudioManager.Instance.Play("Death");
         gameObject.GetComponent<PlayerInput>().hasFired = true;
         playerDeathPanel.SetActive(true);
         playerModel.SetActive(false);
         gunModel.SetActive(false);
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(2.5f);
         Respawn();
     }
 
