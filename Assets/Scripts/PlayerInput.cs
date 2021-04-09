@@ -40,8 +40,6 @@ public class PlayerInput : MonoBehaviour
     [HideInInspector] public bool hasFired = false;
 
     [SerializeField] private GameObject ppVolume;
-    [SerializeField] private GameObject greenLight;
-    [SerializeField] private GameObject redLight;
 
     private void Awake()
     {
@@ -95,16 +93,6 @@ public class PlayerInput : MonoBehaviour
         {
             AmmoWarning.SetActive(true);
         }
-        if (ammoCount <= 0f)
-        {
-            redLight.SetActive(true);
-            greenLight.SetActive(false);
-        }
-        if (ammoCount > 0f)
-        {
-            redLight.SetActive(false);
-            greenLight.SetActive(true);
-        }
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -152,7 +140,6 @@ public class PlayerInput : MonoBehaviour
                     --ammoCount;
                     muzzleFlash.Play();
                     bulletTrail.Play();
-                    AudioManager.Instance.Play("Shoot");
 
                     if (Physics.Raycast(playerCam.transform.position, playerCam.transform.forward, out hit))
                     {
