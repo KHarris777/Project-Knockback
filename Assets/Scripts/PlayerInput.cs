@@ -151,7 +151,8 @@ public class PlayerInput : MonoBehaviour
             if(hasFired == false)
             {
                 StartCoroutine(FireRate());
-                
+                StartCoroutine(MeleeRate());
+
                 if (ammoCount >= 1)
                 {
                     RaycastHit hit;

@@ -18,7 +18,7 @@ public class WayPoints : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update() {
+    void FixedUpdate() {
         if (Vector3.Distance(waypoints[current].transform.position, transform.position) < WPradius)
         {
 

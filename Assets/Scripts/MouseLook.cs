@@ -49,7 +49,7 @@ public class MouseLook : MonoBehaviour
         if (context.performed == true)
         {
             stusLabel.SetActive(true);
-            sensitivityY = -10f;
+            sensitivityY = -5f;
         }
     }
 
@@ -58,7 +58,7 @@ public class MouseLook : MonoBehaviour
         if (context.performed == true)
         {
             stusLabel.SetActive(false);
-            sensitivityY = 10f;
+            sensitivityY = 5f;
         }
     }
 
