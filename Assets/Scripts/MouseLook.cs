@@ -40,6 +40,7 @@ public class MouseLook : MonoBehaviour
         lookVec.x = Mathf.Clamp(lookVec.x, -90, 90);
         transform.rotation = Quaternion.Euler(lookVec);
         player.transform.localEulerAngles = new Vector3(0, lookVec.y, 0);
+        //player.transform.localRotation = Quaternion.Euler(0, lookVec.y, 0);
     }
        
     

@@ -21,12 +21,25 @@ public class Target : MonoBehaviour
 
     [SerializeField] private GameObject arm;
 
-    private int deathCount = 0;
-    public Text deathsLabel;
+    private int livesCount = 5;
+    public Text livesLabel;
+    private bool alive = true;
+
+    [SerializeField] private GameObject elimPanel;
+    [SerializeField] private GameObject winPanel;
+    
+    private bool winner = false;
+    public float timeRemaining = 10f;
+    public Text countdownLabel;
+
+    public static bool lastManStanding = false;
+
     private void OnEnable()
     {
         index = Random.Range(0, respawnPoints.Length);
         player.transform.position = respawnPoints[index].transform.position;
+
+        alive = true;
     }
 
     private void Update()
@@ -38,8 +51,23 @@ public class Target : MonoBehaviour
             lifeWarning.SetActive(true);
         }
 
-        deathsLabel.text = deathCount.ToString();
+        livesLabel.text = livesCount.ToString();
+
        
+       
+        if (lastManStanding == true && alive == true)
+        {
+            Winner();
+        }
+
+        if(winner == true)
+        {
+            if (timeRemaining > 0)
+            {
+                countdownLabel.text = timeRemaining.ToString();
+                timeRemaining -= Time.deltaTime;
+            }
+        }
     }
 
     public void TakeDamage (float amount)
@@ -69,7 +97,7 @@ public class Target : MonoBehaviour
     public IEnumerator Death()
     {
         Debug.Log("enemy down");
-        ++deathCount;
+        --livesCount;
         AudioManager.Instance.Play("Death");
         gameObject.GetComponent<PlayerInput>().hasFired = true;
         gameObject.GetComponent<PlayerInput>().hasPunched = true;
@@ -84,18 +112,53 @@ public class Target : MonoBehaviour
 
     void Respawn()
     {
-        health = 20f;
-        playerModel.SetActive(true);
-        gunModel.SetActive(true);
-        player.transform.position = respawnPoints[index].transform.position;
-        Physics.SyncTransforms();
-        playerDeathPanel.SetActive(false);
-        lifeWarning.SetActive(false);
-        arm.SetActive(true);
-        gameObject.GetComponent<PlayerInput>().hasFired = false;
-        gameObject.GetComponent<PlayerInput>().hasPunched = false;
+        if (livesCount <= 0)
+        {
+            Eliminated();
+        }
+
+        if(livesCount > 0)
+        {
+            health = 20f;
+            playerModel.SetActive(true);
+            gunModel.SetActive(true);
+            player.transform.position = respawnPoints[index].transform.position;
+            Physics.SyncTransforms();
+            playerDeathPanel.SetActive(false);
+            lifeWarning.SetActive(false);
+            arm.SetActive(true);
+            gameObject.GetComponent<PlayerInput>().hasFired = false;
+            gameObject.GetComponent<PlayerInput>().hasPunched = false;
+        }
+        
     }
 
+   void Eliminated()
+    {
+        GameManager.Instance.playerEliminated();
+        alive = false;
+        elimPanel.SetActive(true);
+        playerDeathPanel.SetActive(false);
+        gameObject.GetComponent<PlayerInput>().hasFired = true;
+        gameObject.GetComponent<PlayerInput>().hasPunched = true;
+        playerModel.SetActive(false);
+        gunModel.SetActive(false);
+        arm.SetActive(false);
+    }
+
+    public void Winner()
+    {
+        winner = true;
+        winPanel.SetActive(true);
+        StartCoroutine(Restart());
+        lastManStanding = false;
+
+    }
+    public IEnumerator Restart()
+    {
+        yield return new WaitForSeconds(10f);
+        GameManager.Instance.ReloadScene();       
+    }
 
     private void OnTriggerEnter(Collider other)
     {

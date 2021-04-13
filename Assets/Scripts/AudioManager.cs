@@ -8,6 +8,8 @@ public class AudioManager : Singleton<AudioManager>
 {
     public Sound[] sounds;
 
+    
+   
     void Start()
     {
         foreach (Sound s in sounds)
