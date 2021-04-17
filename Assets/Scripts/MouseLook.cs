@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class MouseLook : MonoBehaviour
 {
@@ -14,9 +15,18 @@ public class MouseLook : MonoBehaviour
 
     public Camera Cam;
 
-    public GameObject stusLabel;
+    public GameObject MenuUI;
+    private bool isPaused;
+    public Text SensYValue;
+    public Text SensXValue;
 
-    // Update is called once per frame
+
+    private void Update()
+    {
+        SensXValue.text = sensitivityX.ToString();
+        SensYValue.text = sensitivityY.ToString();
+    }
+
     void FixedUpdate()
     {
         Look();  
@@ -42,24 +52,77 @@ public class MouseLook : MonoBehaviour
         player.transform.localEulerAngles = new Vector3(0, lookVec.y, 0);
         //player.transform.localRotation = Quaternion.Euler(0, lookVec.y, 0);
     }
-       
+   
     
-
-    public void ForStu(InputAction.CallbackContext context)
+    public void Pause(InputAction.CallbackContext context)
     {
         if (context.performed == true)
         {
-            stusLabel.SetActive(true);
-            sensitivityY = -5f;
+           if(isPaused == false)
+            {
+                MenuUI.SetActive(true);
+                isPaused = true;
+            }
+           
         }
     }
 
-    public void setInvertNormal(InputAction.CallbackContext context)
+    public void ExitMenu(InputAction.CallbackContext context)
     {
         if (context.performed == true)
         {
-            stusLabel.SetActive(false);
-            sensitivityY = 5f;
+           if(isPaused == true)
+            {
+                MenuUI.SetActive(false);
+                isPaused = false;
+            }
+            else
+            {
+                return;
+            }
+
+        }
+    }
+
+    public void IncreaseX(InputAction.CallbackContext context)
+    {
+        if (context.performed == true)
+        {
+            if(isPaused == true)
+            {
+                ++sensitivityX;
+            }
+          
+        }
+    }
+    public void DecreaseX(InputAction.CallbackContext context)
+    {
+        if (context.performed == true)
+        {
+            if (isPaused == true)
+            {
+                --sensitivityX;
+            }
+        }
+    }
+    public void IncreaseY(InputAction.CallbackContext context)
+    {
+        if (context.performed == true)
+        {
+            if (isPaused == true)
+            {
+                ++sensitivityY;
+            }
+        }
+    }
+    public void DecreaseY(InputAction.CallbackContext context)
+    {
+        if (context.performed == true)
+        {
+            if (isPaused == true)
+            {
+                --sensitivityY;
+            }
         }
     }
 

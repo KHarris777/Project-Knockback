@@ -38,25 +38,57 @@
                     "interactions": ""
                 },
                 {
-                    "name": "For Stu",
-                    "type": "Button",
-                    "id": "6f4f6977-9a70-4a78-91c8-0a9dd973335b",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "Set Invert to Normal",
-                    "type": "Button",
-                    "id": "fb7d3790-a686-46b4-a370-3b88674164a0",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
                     "name": "Melee",
                     "type": "Button",
                     "id": "4cfc2052-a78b-4f6a-96ee-34538d959af4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "64930af3-3cc4-4a14-a7fe-66256efd522c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "ExitMenu",
+                    "type": "Button",
+                    "id": "0102e45f-b6d1-490f-90a5-4fae43a605ac",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "IncreaseSensY",
+                    "type": "Button",
+                    "id": "6c69d3c0-9a45-4cc1-8ad4-b445407f7c24",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "DecreaseSensY",
+                    "type": "Button",
+                    "id": "f4061e31-7ddd-440e-8d12-06fc5911750b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "IncreaseSensX",
+                    "type": "Button",
+                    "id": "6422ba4f-7435-4cec-ba48-a34b201c62d8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "DecreaseSensX",
+                    "type": "Button",
+                    "id": "7d372a84-6874-40e1-baca-6e6217f470d3",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -197,28 +229,6 @@
                 },
                 {
                     "name": "",
-                    "id": "ea3f6da5-9812-4043-8a8b-5b683acdf433",
-                    "path": "<Gamepad>/dpad/up",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Controller",
-                    "action": "For Stu",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "bd3b9a61-b8ae-4f77-91fd-a95c1f8087d4",
-                    "path": "<Gamepad>/dpad/down",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Controller",
-                    "action": "Set Invert to Normal",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "25eeaed3-966f-4876-b665-64312c1aa724",
                     "path": "<Gamepad>/rightStickPress",
                     "interactions": "",
@@ -236,6 +246,138 @@
                     "processors": "",
                     "groups": "Keyboard",
                     "action": "Melee",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c7da848f-dd3d-4f15-9b4e-8f8ab053d679",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e027221e-cc96-4ebc-a284-eb46fe983476",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "90d966fd-0189-4946-91fc-f47162981476",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "IncreaseSensY",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d85d1b81-1857-44b4-b6e4-563417d30558",
+                    "path": "<Gamepad>/dpad/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "IncreaseSensY",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "759ff36f-aeb8-474e-a302-92c55ca7a957",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "DecreaseSensY",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "18c5d235-2224-4105-86e7-6f93c5a8959c",
+                    "path": "<Gamepad>/dpad/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "DecreaseSensY",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4638a579-3e00-42e6-9632-d3feb314e316",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "DecreaseSensX",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "085e807a-10ee-4be6-9f7a-522385411ad0",
+                    "path": "<Gamepad>/dpad/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "DecreaseSensX",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9205c3e4-f4c2-4466-9117-51c4cd7994b4",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "IncreaseSensX",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b2f4a85c-769c-4279-befd-b83312eb43fa",
+                    "path": "<Gamepad>/dpad/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "IncreaseSensX",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c6bb2520-d7a9-4bd9-9dad-266367d0503b",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "ExitMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "065d763e-4e65-4256-9bd3-ad849aec74e0",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "ExitMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

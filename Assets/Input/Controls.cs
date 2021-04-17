@@ -51,25 +51,57 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""For Stu"",
-                    ""type"": ""Button"",
-                    ""id"": ""6f4f6977-9a70-4a78-91c8-0a9dd973335b"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""Set Invert to Normal"",
-                    ""type"": ""Button"",
-                    ""id"": ""fb7d3790-a686-46b4-a370-3b88674164a0"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
                     ""name"": ""Melee"",
                     ""type"": ""Button"",
                     ""id"": ""4cfc2052-a78b-4f6a-96ee-34538d959af4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""64930af3-3cc4-4a14-a7fe-66256efd522c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""ExitMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""0102e45f-b6d1-490f-90a5-4fae43a605ac"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""IncreaseSensY"",
+                    ""type"": ""Button"",
+                    ""id"": ""6c69d3c0-9a45-4cc1-8ad4-b445407f7c24"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""DecreaseSensY"",
+                    ""type"": ""Button"",
+                    ""id"": ""f4061e31-7ddd-440e-8d12-06fc5911750b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""IncreaseSensX"",
+                    ""type"": ""Button"",
+                    ""id"": ""6422ba4f-7435-4cec-ba48-a34b201c62d8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""DecreaseSensX"",
+                    ""type"": ""Button"",
+                    ""id"": ""7d372a84-6874-40e1-baca-6e6217f470d3"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -210,28 +242,6 @@ public class @Controls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""ea3f6da5-9812-4043-8a8b-5b683acdf433"",
-                    ""path"": ""<Gamepad>/dpad/up"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Controller"",
-                    ""action"": ""For Stu"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""bd3b9a61-b8ae-4f77-91fd-a95c1f8087d4"",
-                    ""path"": ""<Gamepad>/dpad/down"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Controller"",
-                    ""action"": ""Set Invert to Normal"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""25eeaed3-966f-4876-b665-64312c1aa724"",
                     ""path"": ""<Gamepad>/rightStickPress"",
                     ""interactions"": """",
@@ -249,6 +259,138 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
                     ""action"": ""Melee"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c7da848f-dd3d-4f15-9b4e-8f8ab053d679"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e027221e-cc96-4ebc-a284-eb46fe983476"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""90d966fd-0189-4946-91fc-f47162981476"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""IncreaseSensY"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d85d1b81-1857-44b4-b6e4-563417d30558"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""IncreaseSensY"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""759ff36f-aeb8-474e-a302-92c55ca7a957"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""DecreaseSensY"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""18c5d235-2224-4105-86e7-6f93c5a8959c"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""DecreaseSensY"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4638a579-3e00-42e6-9632-d3feb314e316"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""DecreaseSensX"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""085e807a-10ee-4be6-9f7a-522385411ad0"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""DecreaseSensX"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9205c3e4-f4c2-4466-9117-51c4cd7994b4"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""IncreaseSensX"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b2f4a85c-769c-4279-befd-b83312eb43fa"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""IncreaseSensX"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c6bb2520-d7a9-4bd9-9dad-266367d0503b"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""ExitMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""065d763e-4e65-4256-9bd3-ad849aec74e0"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""ExitMenu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -291,9 +433,13 @@ public class @Controls : IInputActionCollection, IDisposable
         m_PlayerInput_Movement = m_PlayerInput.FindAction("Movement", throwIfNotFound: true);
         m_PlayerInput_Shoot = m_PlayerInput.FindAction("Shoot", throwIfNotFound: true);
         m_PlayerInput_Aim = m_PlayerInput.FindAction("Aim", throwIfNotFound: true);
-        m_PlayerInput_ForStu = m_PlayerInput.FindAction("For Stu", throwIfNotFound: true);
-        m_PlayerInput_SetInverttoNormal = m_PlayerInput.FindAction("Set Invert to Normal", throwIfNotFound: true);
         m_PlayerInput_Melee = m_PlayerInput.FindAction("Melee", throwIfNotFound: true);
+        m_PlayerInput_Pause = m_PlayerInput.FindAction("Pause", throwIfNotFound: true);
+        m_PlayerInput_ExitMenu = m_PlayerInput.FindAction("ExitMenu", throwIfNotFound: true);
+        m_PlayerInput_IncreaseSensY = m_PlayerInput.FindAction("IncreaseSensY", throwIfNotFound: true);
+        m_PlayerInput_DecreaseSensY = m_PlayerInput.FindAction("DecreaseSensY", throwIfNotFound: true);
+        m_PlayerInput_IncreaseSensX = m_PlayerInput.FindAction("IncreaseSensX", throwIfNotFound: true);
+        m_PlayerInput_DecreaseSensX = m_PlayerInput.FindAction("DecreaseSensX", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -347,9 +493,13 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_PlayerInput_Movement;
     private readonly InputAction m_PlayerInput_Shoot;
     private readonly InputAction m_PlayerInput_Aim;
-    private readonly InputAction m_PlayerInput_ForStu;
-    private readonly InputAction m_PlayerInput_SetInverttoNormal;
     private readonly InputAction m_PlayerInput_Melee;
+    private readonly InputAction m_PlayerInput_Pause;
+    private readonly InputAction m_PlayerInput_ExitMenu;
+    private readonly InputAction m_PlayerInput_IncreaseSensY;
+    private readonly InputAction m_PlayerInput_DecreaseSensY;
+    private readonly InputAction m_PlayerInput_IncreaseSensX;
+    private readonly InputAction m_PlayerInput_DecreaseSensX;
     public struct PlayerInputActions
     {
         private @Controls m_Wrapper;
@@ -358,9 +508,13 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @Movement => m_Wrapper.m_PlayerInput_Movement;
         public InputAction @Shoot => m_Wrapper.m_PlayerInput_Shoot;
         public InputAction @Aim => m_Wrapper.m_PlayerInput_Aim;
-        public InputAction @ForStu => m_Wrapper.m_PlayerInput_ForStu;
-        public InputAction @SetInverttoNormal => m_Wrapper.m_PlayerInput_SetInverttoNormal;
         public InputAction @Melee => m_Wrapper.m_PlayerInput_Melee;
+        public InputAction @Pause => m_Wrapper.m_PlayerInput_Pause;
+        public InputAction @ExitMenu => m_Wrapper.m_PlayerInput_ExitMenu;
+        public InputAction @IncreaseSensY => m_Wrapper.m_PlayerInput_IncreaseSensY;
+        public InputAction @DecreaseSensY => m_Wrapper.m_PlayerInput_DecreaseSensY;
+        public InputAction @IncreaseSensX => m_Wrapper.m_PlayerInput_IncreaseSensX;
+        public InputAction @DecreaseSensX => m_Wrapper.m_PlayerInput_DecreaseSensX;
         public InputActionMap Get() { return m_Wrapper.m_PlayerInput; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -382,15 +536,27 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Aim.started -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnAim;
                 @Aim.performed -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnAim;
                 @Aim.canceled -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnAim;
-                @ForStu.started -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnForStu;
-                @ForStu.performed -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnForStu;
-                @ForStu.canceled -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnForStu;
-                @SetInverttoNormal.started -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnSetInverttoNormal;
-                @SetInverttoNormal.performed -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnSetInverttoNormal;
-                @SetInverttoNormal.canceled -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnSetInverttoNormal;
                 @Melee.started -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnMelee;
                 @Melee.performed -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnMelee;
                 @Melee.canceled -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnMelee;
+                @Pause.started -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnPause;
+                @ExitMenu.started -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnExitMenu;
+                @ExitMenu.performed -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnExitMenu;
+                @ExitMenu.canceled -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnExitMenu;
+                @IncreaseSensY.started -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnIncreaseSensY;
+                @IncreaseSensY.performed -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnIncreaseSensY;
+                @IncreaseSensY.canceled -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnIncreaseSensY;
+                @DecreaseSensY.started -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnDecreaseSensY;
+                @DecreaseSensY.performed -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnDecreaseSensY;
+                @DecreaseSensY.canceled -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnDecreaseSensY;
+                @IncreaseSensX.started -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnIncreaseSensX;
+                @IncreaseSensX.performed -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnIncreaseSensX;
+                @IncreaseSensX.canceled -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnIncreaseSensX;
+                @DecreaseSensX.started -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnDecreaseSensX;
+                @DecreaseSensX.performed -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnDecreaseSensX;
+                @DecreaseSensX.canceled -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnDecreaseSensX;
             }
             m_Wrapper.m_PlayerInputActionsCallbackInterface = instance;
             if (instance != null)
@@ -407,15 +573,27 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Aim.started += instance.OnAim;
                 @Aim.performed += instance.OnAim;
                 @Aim.canceled += instance.OnAim;
-                @ForStu.started += instance.OnForStu;
-                @ForStu.performed += instance.OnForStu;
-                @ForStu.canceled += instance.OnForStu;
-                @SetInverttoNormal.started += instance.OnSetInverttoNormal;
-                @SetInverttoNormal.performed += instance.OnSetInverttoNormal;
-                @SetInverttoNormal.canceled += instance.OnSetInverttoNormal;
                 @Melee.started += instance.OnMelee;
                 @Melee.performed += instance.OnMelee;
                 @Melee.canceled += instance.OnMelee;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
+                @ExitMenu.started += instance.OnExitMenu;
+                @ExitMenu.performed += instance.OnExitMenu;
+                @ExitMenu.canceled += instance.OnExitMenu;
+                @IncreaseSensY.started += instance.OnIncreaseSensY;
+                @IncreaseSensY.performed += instance.OnIncreaseSensY;
+                @IncreaseSensY.canceled += instance.OnIncreaseSensY;
+                @DecreaseSensY.started += instance.OnDecreaseSensY;
+                @DecreaseSensY.performed += instance.OnDecreaseSensY;
+                @DecreaseSensY.canceled += instance.OnDecreaseSensY;
+                @IncreaseSensX.started += instance.OnIncreaseSensX;
+                @IncreaseSensX.performed += instance.OnIncreaseSensX;
+                @IncreaseSensX.canceled += instance.OnIncreaseSensX;
+                @DecreaseSensX.started += instance.OnDecreaseSensX;
+                @DecreaseSensX.performed += instance.OnDecreaseSensX;
+                @DecreaseSensX.canceled += instance.OnDecreaseSensX;
             }
         }
     }
@@ -444,8 +622,12 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
         void OnAim(InputAction.CallbackContext context);
-        void OnForStu(InputAction.CallbackContext context);
-        void OnSetInverttoNormal(InputAction.CallbackContext context);
         void OnMelee(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
+        void OnExitMenu(InputAction.CallbackContext context);
+        void OnIncreaseSensY(InputAction.CallbackContext context);
+        void OnDecreaseSensY(InputAction.CallbackContext context);
+        void OnIncreaseSensX(InputAction.CallbackContext context);
+        void OnDecreaseSensX(InputAction.CallbackContext context);
     }
 }
