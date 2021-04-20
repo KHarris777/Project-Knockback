@@ -13,13 +13,13 @@ public class MouseLook : MonoBehaviour
 
     public Transform player;
 
-    public Camera Cam;
+    //public Camera cam;
+    public Transform cameraHolder;
 
     public GameObject MenuUI;
     private bool isPaused;
     public Text SensYValue;
     public Text SensXValue;
-
 
     private void Update()
     {
@@ -27,18 +27,20 @@ public class MouseLook : MonoBehaviour
         SensYValue.text = sensitivityY.ToString();
     }
 
-    void FixedUpdate()
+    private void LateUpdate()
     {
-        Look();  
+        transform.position = cameraHolder.position;  
+    }
+
+    private void FixedUpdate()
+    {
+        Look();
     }
 
     public void OnLook(InputAction.CallbackContext context)
     {
        
         Vector2 lookValue = context.ReadValue<Vector2>();
-        //lookValue *= 0.5f; // Account for scaling applied directly in Windows code by old input system.
-        //lookValue *= 0.1f; // Account for sensitivity setting on old Mouse X and Y axes.
-
 
         lookVec.x += -lookValue.y * sensitivityY * Time.deltaTime;
         lookVec.y += lookValue.x * sensitivityX * Time.deltaTime;
@@ -46,11 +48,18 @@ public class MouseLook : MonoBehaviour
     }
 
     public void Look()
-    {
+    {                
         lookVec.x = Mathf.Clamp(lookVec.x, -90, 90);
         transform.rotation = Quaternion.Euler(lookVec);
-        player.transform.localEulerAngles = new Vector3(0, lookVec.y, 0);
+
+        Vector3 vNew = new Vector3(0, lookVec.y, 0);
+        player.transform.localEulerAngles = vNew;
+
+        //Vector3 smoothMov = Vector3.Lerp(transform.position, cameraHolder.position, 2f);
+        //transform.position = smoothMov;
+
         //player.transform.localRotation = Quaternion.Euler(0, lookVec.y, 0);
+        //player.transform.localEulerAngles = (Vector3.up * lookVec.y);
     }
    
     

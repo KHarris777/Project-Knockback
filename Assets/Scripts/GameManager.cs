@@ -37,7 +37,7 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    public void playerEliminated()
+    public void PlayerEliminated()
     {
         ++eliminatedPlayers;
     }

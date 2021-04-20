@@ -135,7 +135,7 @@ public class Target : MonoBehaviour
 
    void Eliminated()
     {
-        GameManager.Instance.playerEliminated();
+        GameManager.Instance.PlayerEliminated();
         alive = false;
         elimPanel.SetActive(true);
         playerDeathPanel.SetActive(false);
