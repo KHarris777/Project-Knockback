@@ -97,12 +97,9 @@ public class PlayerInput : MonoBehaviour
 
         }
 
-        if(ammoCount <= 1f)
-        {
-            AmmoWarning.SetActive(true);
-        }
         if (ammoCount <= 0f)
         {
+            AmmoWarning.SetActive(true);
             redLight.SetActive(true);
             greenLight.SetActive(false);
         }
@@ -204,8 +201,7 @@ public class PlayerInput : MonoBehaviour
     }
 
     void StopSliding()
-    {
-             
+    {     
         velocity = Vector3.zero;
         ppVolume.SetActive(false);
     }

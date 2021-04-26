@@ -10,14 +10,15 @@ public class Target : MonoBehaviour
     [SerializeField] private Transform[] respawnPoints;
     private int index;
 
-    public GameObject playerModel;
-    public GameObject gunModel;
+    public GameObject bluePlayerModel;
+    public GameObject redPlayerModel;
+    public GameObject blueGunModel;
+    public GameObject redGunModel;
 
     public GameObject playerDeathPanel;
     //public GameObject playerHUD;
 
     public Text healthLabel;
-    public GameObject lifeWarning;
 
     [SerializeField] private GameObject arm;
 
@@ -33,6 +34,11 @@ public class Target : MonoBehaviour
     public Text countdownLabel;
 
     public static bool lastManStanding = false;
+    private bool isDead = false;
+
+    [SerializeField] private GameObject fullHpBat;
+    [SerializeField] private GameObject halfHpBat;
+    [SerializeField] private GameObject EmptyHpBat;
 
     private void OnEnable()
     {
@@ -46,13 +52,7 @@ public class Target : MonoBehaviour
     {
         healthLabel.text = health.ToString();
 
-        if (health <= 10f)
-        {
-            lifeWarning.SetActive(true);
-        }
-
         livesLabel.text = livesCount.ToString();
-
        
        
         if (lastManStanding == true && alive == true)
@@ -73,12 +73,26 @@ public class Target : MonoBehaviour
     public void TakeDamage (float amount)
     {
         Debug.Log("hit");
-        
 
-        health -= amount;
+        blueGunModel.SetActive(false);
+        bluePlayerModel.SetActive(false);
+        redGunModel.SetActive(true);
+        redPlayerModel.SetActive(true);
+        
+        fullHpBat.SetActive(false);
+        halfHpBat.SetActive(true);
+
+
+            health -= amount;
+        
         if (health <= 0f)
         {
-            StartCoroutine(Death());
+            if(isDead == false)
+            {
+                isDead = true;
+                StartCoroutine(Death());
+            }
+           
         }
     }
 
@@ -87,26 +101,46 @@ public class Target : MonoBehaviour
         Debug.Log("hit");
         AudioManager.Instance.Play("Hit");
 
-        health -= amount;
+        blueGunModel.SetActive(false);
+        bluePlayerModel.SetActive(false);
+        redGunModel.SetActive(false);
+        redPlayerModel.SetActive(false);
+
+        if (isDead == false)
+        {
+            health -= amount;
+        }
+
         if (health <= 0f)
         {
-            StartCoroutine(Death());
+            if (isDead == false)
+            {
+                isDead = true;
+                StartCoroutine(Death());
+            }
+
         }
     }
 
     public IEnumerator Death()
     {
         Debug.Log("enemy down");
+
+       
         --livesCount;
         AudioManager.Instance.Play("Death");
         gameObject.GetComponent<PlayerInput>().hasFired = true;
         gameObject.GetComponent<PlayerInput>().hasPunched = true;
         playerDeathPanel.SetActive(true);
-        playerModel.SetActive(false);
-        gunModel.SetActive(false);
+        redPlayerModel.SetActive(false);
+        redGunModel.SetActive(false);
         arm.SetActive(false);
+        fullHpBat.SetActive(false);
+        halfHpBat.SetActive(false);
+        EmptyHpBat.SetActive(true);
         index = Random.Range(0, respawnPoints.Length);
         yield return new WaitForSeconds(2f);
+        isDead = false;
         Respawn();
     }
 
@@ -119,16 +153,19 @@ public class Target : MonoBehaviour
 
         if(livesCount > 0)
         {
+            
             health = 20f;
-            playerModel.SetActive(true);
-            gunModel.SetActive(true);
+            bluePlayerModel.SetActive(true);
+            blueGunModel.SetActive(true);
             player.transform.position = respawnPoints[index].transform.position;
             Physics.SyncTransforms();
             playerDeathPanel.SetActive(false);
-            lifeWarning.SetActive(false);
             arm.SetActive(true);
             gameObject.GetComponent<PlayerInput>().hasFired = false;
             gameObject.GetComponent<PlayerInput>().hasPunched = false;
+            EmptyHpBat.SetActive(false);
+            fullHpBat.SetActive(true);
+            
         }
         
     }
@@ -141,8 +178,8 @@ public class Target : MonoBehaviour
         playerDeathPanel.SetActive(false);
         gameObject.GetComponent<PlayerInput>().hasFired = true;
         gameObject.GetComponent<PlayerInput>().hasPunched = true;
-        playerModel.SetActive(false);
-        gunModel.SetActive(false);
+        redPlayerModel.SetActive(false);
+        redGunModel.SetActive(false);
         arm.SetActive(false);
     }
 
