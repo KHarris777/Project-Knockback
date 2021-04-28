@@ -20,6 +20,7 @@ public class AudioManager : Singleton<AudioManager>
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
             s.source.priority = s.priority;
+            s.source.loop = s.loop;
         }
        
         AudioManager.Instance.Play("LevelTheme");
