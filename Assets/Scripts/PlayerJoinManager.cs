@@ -11,4 +11,10 @@ public class PlayerJoinManager : MonoBehaviour
         CameraBeforeJoin.SetActive(false);
         AudioManager.Instance.Stop("LevelTheme");
     }
+
+    public void Quit()
+    {
+        Debug.Log("quiting game");
+        Application.Quit();
+    }
 }

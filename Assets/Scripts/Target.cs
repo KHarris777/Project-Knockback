@@ -141,19 +141,13 @@ public class Target : MonoBehaviour
         index = Random.Range(0, respawnPoints.Length);
         yield return new WaitForSeconds(2f);
         isDead = false;
-        Respawn();
+        StartCoroutine(Respawn());
     }
 
-    void Respawn()
+    IEnumerator Respawn()
     {
-        if (livesCount <= 0)
-        {
-            Eliminated();
-        }
-
         if(livesCount > 0)
-        {
-            
+        { 
             health = 20f;
             bluePlayerModel.SetActive(true);
             blueGunModel.SetActive(true);
@@ -161,18 +155,24 @@ public class Target : MonoBehaviour
             Physics.SyncTransforms();
             playerDeathPanel.SetActive(false);
             arm.SetActive(true);
-            gameObject.GetComponent<PlayerInput>().hasFired = false;
-            gameObject.GetComponent<PlayerInput>().hasPunched = false;
             EmptyHpBat.SetActive(false);
             fullHpBat.SetActive(true);
-            
+            yield return new WaitForSeconds(0.45f);
+            gameObject.GetComponent<PlayerInput>().hasFired = false;
+            gameObject.GetComponent<PlayerInput>().hasPunched = false;
         }
         
+        if (livesCount == 0)
+        {
+            Eliminated();
+        }
     }
 
    void Eliminated()
     {
         GameManager.Instance.PlayerEliminated();
+        player.transform.position = respawnPoints[index].transform.position;
+        Physics.SyncTransforms();
         alive = false;
         elimPanel.SetActive(true);
         playerDeathPanel.SetActive(false);
@@ -181,6 +181,7 @@ public class Target : MonoBehaviour
         redPlayerModel.SetActive(false);
         redGunModel.SetActive(false);
         arm.SetActive(false);
+        gameObject.GetComponent<PlayerInput>().speed = 0f;
     }
 
     public void Winner()
